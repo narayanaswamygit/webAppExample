@@ -1,2 +1,2 @@
 FROM tomcat:8.0.20-jre8
-COPY target/  /usr/local/tomcat/webapps/
+COPY target/webappExample*.war /usr/local/tomcat/webapps/webappExample.war
