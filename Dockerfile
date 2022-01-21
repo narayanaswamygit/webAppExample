@@ -1,8 +1,12 @@
-FROM tomcat:8.5-jdk8-temurin-focal
-COPY target/*.war  /usr/local/tomcat/webapps/*.war
+FROM ubuntu
+RUN apt-get update
+RUN mkdir /opt/tomcat
+RUN apt-get install tomcat9 tomcat9-admin
+RUN systemctl enable tomcat9
+RUN systemctl start tomcat9
+COPY target/*.war /opt/tomcat/webapps/*.war
 
-CMD ["catalina.sh", "run"]
+EXPOSE 8888
 
-EXPOSE 8787
-
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
 
