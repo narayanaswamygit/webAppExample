@@ -1,13 +1,4 @@
-FROM ubuntu
-RUN apt-get update
-RUN mkdir /opt/tomcat
-RUN apt-get install tomcat9 tomcat9-admin
-RUN Y
-RUN systemctl enable tomcat9
-RUN systemctl start tomcat9
-COPY target/*.war /opt/tomcat/webapps/*.war
-
-EXPOSE 8888
-
-CMD ["/opt/tomcat/bin/catalina.sh", "run"]
+FROM tomcat:8.0
+COPY target/*.war /usr/local/tomcat/webapps/*.war
+CMD ["catalina.sh", "run"]
 
