@@ -1,0 +1,16 @@
+node {
+    stage ('git') {
+        
+        git 'https://github.com/narayanaswamygit/webAppExample.git'
+
+    }
+    stage ('maven') {
+        sh 'mvn clean package'
+    }
+    stage ('sonar') {
+        withSonarQubeEnv('sonarqube-8.9.1'){
+            sh 'mvn sonar:sonar'    
+        }
+        
+    }
+}
